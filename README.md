@@ -13,6 +13,7 @@ https://skillflo.io/classroom/product/10118/course/10442/courseContent/58049
 
 - 커밋 메시지 양식 : 이거는 각자 알아서... 
 - Pull request 는 이름(깃허브 아이다) : 미션 제출합니다. 
+- 매주 화요일 자정까지 Pr 보내기.
 
 
 
