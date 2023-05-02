@@ -1,0 +1,94 @@
+/* COMMON */
+body {
+    color : #333;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+img {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* HEADER */
+header {
+    background-color: royalblue;
+}
+
+header .inner {
+    width: 1100px;
+    height: 120px;
+    margin: 0 auto;
+    background-color: orange;
+    position: relative;
+}
+
+header .logo {
+    height: 75px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    display: none;
+}
+
+header .sub-menu {
+
+}
+
+header .sub-menu ul.menu {
+    font-family: Arial, sans-serif;
+    display: flex; /* 수평 정렬 */
+}
+
+header .sub-menu ul.menu li {
+    position: relative;
+}
+
+/* before : 인라인 요소, 가로 세로 값을 명확하게 가질 수 없다. */
+/* 그렇기 때문에 정확한 레이아웃을 위해서는 블록 요소로 바꾸어주어야 한다. */
+header .sub-menu ul.menu li::before {
+    content: "";
+    /* display: block; -> position : absolute or fixed를 사용하면 자동으로 블록 요소로 변함! */
+    width: 1px;
+    height: 12px;
+    background-color: #e5e5e5;
+    position: absolute; /* 부모 요소 기준 배치 -> 부모 요소인 li 태그의 position 참고!! */
+    top: 0;
+    bottom: 0;
+    margin: auto 0; /* 0은 있어도 없어도 상관 없음 */
+}
+
+/* 1번째 li 태그를 찾아서 그 태그의 before 요소는 안보이는 것으로 함  */
+header .sub-menu ul.menu li:first-child::before {
+    display: none;
+}
+
+header .sub-menu ul.menu li a {
+    font-size: 12px;
+    padding: 11px 16px;
+    display: block;
+    color: #656565;
+}
+
+header .sub-menu ul.menu li a:hover {
+    color : #000;
+}
+
+header .sub-menu .search {
+
+}
+
+header .sub-menu .search input {
+
+}
+
+header .sub-menu .search .material-icons {
+
+}
