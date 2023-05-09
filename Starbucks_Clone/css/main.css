@@ -6,7 +6,7 @@ body {
     line-height: 1.4;
     font-family: 'Nanum Gothic', sans-serif;
 }
-
+ 
 img {
     display: block;
 }
@@ -15,17 +15,20 @@ a {
     text-decoration: none;
 }
 
-/* HEADER */
-header {
-    background-color: royalblue;
+.inner {
+    width: 1100px;
+    margin : 0 auto;
+    position: relative;
 }
 
-header .inner {
-    width: 1100px;
+/* HEADER */
+header {
+    background-color: #f6f5f0;
+    border-bottom: 1px solid #c8c8c8;
+}
+
+header > .inner {
     height: 120px;
-    margin: 0 auto;
-    background-color: orange;
-    position: relative;
 }
 
 header .logo {
@@ -35,11 +38,13 @@ header .logo {
     bottom: 0;
     left: 0;
     margin: auto;
-    display: none;
 }
 
 header .sub-menu {
-
+    position: absolute;
+    top: 10px;
+    right: 0;
+    display: flex;
 }
 
 header .sub-menu ul.menu {
@@ -81,14 +86,141 @@ header .sub-menu ul.menu li a:hover {
     color : #000;
 }
 
+/* header .sub-menu .search .material-icons의 위치 상의 부모 요소 */
 header .sub-menu .search {
-
+    height: 34px;
+    position: relative;
 }
 
 header .sub-menu .search input {
+    width: 36px;
+    height: 34px;
+    padding: 4px 10px;
+    border: 1px solid #ccc;
 
+    /* 요소의 크기 기준을 width height 값으로 선택하도록 */
+    box-sizing: border-box;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+    color: #777;
+    transition: width .4s;
+    font-size: 12px;
+}
+
+header .sub-menu .search input:focus {
+    width: 190px;
+    border-color: #690;
 }
 
 header .sub-menu .search .material-icons {
+    /* position 을 넣기전, 항상 부모 요소에 position이 있는지 확인! */
+    height: 24px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 5px;
+    margin: auto;
+    transition: .4s;
+}
 
+/* search.focused : 일치 선택자, JS에 의해서 search에 붙고 사라짐 */
+header .sub-menu .search.focused .material-icons {
+    opacity: 0;
+}
+
+header .main-menu {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    /* z-index가 1인 이유 : 카드 뉴스 및 뱃지 등이 가릴 수 있도록 하기 위함 */
+    z-index: 1;
+    display: flex;
+}
+
+header .main-menu .item {
+    
+}
+
+header .main-menu .item .item__name {
+    padding: 10px 20px 34px 20px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+/* 메뉴에 마우스를 올렸을 때 계속해서 전체적인 호버가 유지될 수 있도록 item 속성에 hover를 부여 */
+header .main-menu .item:hover .item__name {
+    background-color: #2c2a29;
+    color: #669900;
+    border-radius: 6px 6px 0 0;
+}
+
+header .main-menu .item .item__contents {
+    width: 100%;
+
+    /* top bottom 등의 속성을 쓰지 않아 수직 위치 값이 없다면 요소의 원래 위치를 그대로 사용함! */
+    /* absolute 를 사용할 경우 위치상 부모 요소를 기준으로 하기 때문에 화면의 뷰 포트 좌우 끝까지 늘어날 수 없음.. */
+    position: fixed;
+    left: 0;
+    display: none;
+}
+
+header .main-menu .item:hover .item__contents {
+    display: block;
+}
+
+header .main-menu .item .item__contents .contents__menu {
+    background-color: #2c2a29;
+    /* height: 200px; */
+}
+
+header .main-menu .item .item__contents .contents__menu > ul {
+    /* 각 메뉴 탭의 소 메뉴가 수평 정렬 */
+    display: flex;
+    padding: 20px 0;
+}
+
+header .main-menu .item .item__contents .contents__menu > ul > li {
+    width: 220px;
+}
+
+header .main-menu .item .item__contents .contents__menu > ul > li h4 {
+    padding: 3px 0 12px 0;
+    font-size: 14px;
+    color: #fff;
+}
+
+header .main-menu .item .item__contents .contents__menu > ul > li ul li {
+    padding: 5px 0;
+    font-size: 12px;
+    color: #999;
+    cursor: pointer;
+}
+
+header .main-menu .item .item__contents .contents__menu > ul > li ul li:hover {
+    color: #669900
+}
+
+header .main-menu .item .item__contents .contents__texture {
+    padding: 26px 0;
+    font-size: 12px;
+
+    /* 기본값 : repeat, 반복적으로 출력됨 */
+    background-image: url("../images/main_menu_pattern.jpg");
+}
+
+header .main-menu .item .item__contents .contents__texture h4 {
+    color: #999;
+    font-weight: 700;
+    /* font-size: 12px; */
+}
+
+header .main-menu .item .item__contents .contents__texture p {
+    color: #669900;
+
+    /* 상 중 하 */
+    margin: 4px 0 14px;
+
+    /* font-size: 12px; */
 }
