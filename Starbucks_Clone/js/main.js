@@ -1,3 +1,4 @@
+// [검색창 관련 처리]
 // Class가 search인 요소를 찾아 searchEL로 사용함
 const searchEl = document.querySelector('.search');
 
@@ -28,3 +29,48 @@ searchInputEl.addEventListener('blur', function() {
     searchEl.classList.remove('focused');
     searchInputEl.setAttribute('placeholder', '');
 })
+
+
+// [뱃지 관련 처리]
+const badgeEl = document.querySelector('header .badges');
+
+// window : 우리가 보고있는 창 그 자체
+// 스크롤 할 경우 이에 대한 이벤트 리스너가 이에 대한 작업을 처리함
+// 스크롤 1번할 때마다 함수가 너무 많이 실행되서 이 부분을 처리 해줌!
+// Lodash 라는 JS 라이브러리의 특수한 명령어를 가져와서 사용함!
+// 함수가 우루루 실행되는 것이 아닌 0.3초의 제한을 둬서 띄엄띄엄 실행되도록 함
+// _.throttle(함수, 시간)
+
+// 자바스크립트에서 애니메이션 효과를 줄 수 있는 라이브러리를 가져다 쓰기
+window.addEventListener('scroll', _.throttle(function () {
+    console.log(window.scrollY);
+    if (window.scrollY > 500) {
+        // 뱃지 숨기기
+        // gsap.to(요소, 지속시간, 옵션);
+        gsap.to(badgeEl, 0.6, {
+            opacity : 0,
+            display : 'none'
+        })
+    } else {
+        // 뱃지 보이기
+        gsap.to(badgeEl, 0.6, {
+            opacity : 1,
+            display : 'block'
+        })
+    }
+}, 300))
+
+// [Visual 섹션 처리]
+const fadeEls = document.querySelectorAll('.visual .fade-in');
+
+// forEach는 가져온 요소들에 대해서 하나하나 요소를 꺼내서 사용함
+// 이때 내부 function에 2가지 인자를 줄 수 있다.
+// 하나는 꺼내서 쓸 요소의 명칭 + 반복되는 횟수를 받아서 쓸 명칭
+fadeEls.forEach(function (fadeEl, index) {
+    // gsap.to(요소, 지속시간, 옵션);
+    // index를 통해 시간차를 둘 수 있다!
+    gsap.to(fadeEl, 1, {
+        delay : (index + 1) * 0.7,
+        opacity : 1
+    })
+});
