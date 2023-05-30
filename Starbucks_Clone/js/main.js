@@ -101,3 +101,17 @@ new Swiper('.promotion .swiper-container', {
     }
 });
 
+// [슬라이드 영역 토글 버튼 로직]
+const promotionEl = document.querySelector('.promotion');
+const promotionToggleBtn = document.querySelector('.toggle-promotion');
+let isHidePromotion = false
+promotionToggleBtn.addEventListener('click', function () {
+    isHidePromotion = !isHidePromotion // 클릭할때마다 반전
+    if (isHidePromotion) {
+        // 숨김 처리
+        promotionEl.classList.add('hide'); // hide 클래스 추가에 따른 숨김처리를 CSS에서 해준다.
+    } else {
+        // 보임 처리
+        promotionEl.classList.remove('hide');
+    }
+});
